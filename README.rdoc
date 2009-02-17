@@ -1,0 +1,33 @@
+= Ruby-Locale for Ruby on Rails
+
+This library provides some Rails localized functions.
+
+This is useful with Rails i18n backends which doesn't have
+auto-detection and some other features includes this library.
+
+== Features for Ruby on Rails
+* Auto-Detect the locales from the WWW browser
+* Action/Fragment caching
+* Separated Localized View template file
+* Localized Routes
+
+== Website
+* http://www.yotabanana.com/hiki/ruby-locale-rails.html
+* http://locale.rubyforge.org/
+
+== Requirements
+* Ruby-1.8.7 or later <http://www.ruby-lang.org/ja/>
+* JRuby-1.1.4 or later <http://jruby.codehaus.org/>
+* Ruby-Locale-0.9.0 or later <http://locale.rubyforge.org/>
+
+== Install
+* gem:
+  ($ su)
+   # gem install locale_rails
+
+== License
+This program is licenced under the same licence as Ruby.
+(See the file 'COPYING'.)
+
+== Maintainer
+Masao Mutoh <mutoh at highway.ne.jp>

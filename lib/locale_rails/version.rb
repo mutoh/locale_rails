@@ -1,0 +1,4 @@
+module Locale
+  SUPPORTED_RAILS_VERSION = "2.2.0"
+  LOCALE_RAILS_VERSION = "0.1.0"
+end

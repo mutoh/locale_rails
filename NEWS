@@ -1,0 +1,7 @@
+= Ruby-Locale for Ruby on Rails-0.1.0 (2008-12-04)
+
+* Initial released.
+* Auto-Detect the locales from the WWW browser
+* Localized Routes
+* Action/Fragment caching
+* Separated Localized View template file
