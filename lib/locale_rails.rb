@@ -2,7 +2,9 @@ require 'locale'
 
 Locale.init(:driver => :cgi)
 
-["i18n", "action_controller", "action_view", "version"].each do  |lib|
+# localized view support was canceled.
+#["i18n", "action_controller", "action_view", "version"].each do  |lib|
+["i18n", "action_controller", "version"].each do  |lib|
   require File.join(File.dirname(__FILE__), "locale_rails", lib)
 end
 
