@@ -30,4 +30,4 @@ This program is licenced under the same licence as Ruby.
 (See the file 'COPYING'.)
 
 == Maintainer
-Masao Mutoh <mutoh at highway.ne.jp>
+Masao Mutoh <mutomasa at gmail.com>
