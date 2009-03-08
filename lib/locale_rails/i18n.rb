@@ -1,7 +1,7 @@
 =begin
   locale_rails/lib/i18n.rb - Ruby/Locale for "Ruby on Rails"
 
-  Copyright (C) 2008  Masao Mutoh
+  Copyright (C) 2008,2009  Masao Mutoh
 
   You may redistribute it and/or modify it under the same
   license terms as Ruby.
@@ -28,6 +28,7 @@ module I18n
   #  I18n.locale = "ja-JP"
   def locale=(tag)
     Locale.clear
+    tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
     Locale.current = tag
     Thread.current[:locale] = candidates(:rfc)[0]
   end
@@ -50,6 +51,24 @@ module I18n
     Locale.candidates(:type => type, 
                       :supported_language_tags => supported_locales,
                       :default_language_tags => default)
+  end
+
+  class << self
+
+    # MissingTranslationData is overrided to fallback messages in candidate locales.
+    def locale_rails_exception_handler(exception, locale, key, options) #:nodoc:
+      ret = nil
+      candidates(:rfc).each do |loc|
+        begin
+          ret = backend.translate(loc, key, options)
+          break
+        rescue I18n::MissingTranslationData 
+          ret = I18n.default_exception_handler(exception, locale, key, options)
+        end
+      end
+      ret
+    end
+    I18n.exception_handler = :locale_rails_exception_handler
   end
 
 end
