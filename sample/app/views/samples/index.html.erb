@@ -4,11 +4,12 @@
 <h2>The values from Rails</h2>
 <table border="1" cellspacing="0" cellpadding="2">
   <tr><th>Variables</th><th>Values</th></tr>
-  <tr><td>HTTP_ACCEPT_LANGUAGE</td><td> <%= request.cgi.accept_language %></td></tr>
-  <tr><td>HTTP_ACCEPT_CHARSET</td><td> <%= request.cgi.accept_charset %></td></tr>
-  <tr><td>QUERY_STRING</td><td> <%= request.cgi.query_string %></td></tr>
+  <tr><td>HTTP_ACCEPT_LANGUAGE</td><td> <%= request.accept_language %></td></tr>
+  <tr><td>HTTP_ACCEPT_CHARSET</td><td> <%= request.accept_charset %></td></tr>
+  <tr><td>QUERY_STRING</td><td> <%= request.query_string %></td></tr>
   <tr><td>params[:lang]</td><td><%= params[:lang] %></td></tr>
   <tr><td>cookies[:lang]</td><td> <%= cookies[:lang] %></td></tr>
+  <tr><td>I18n.t :hello</td><td> <%= I18n.t :hello %></td></tr>
 </table>
 
 <%= render :partial => 'part' %>
