@@ -1,4 +1,4 @@
-<h1>Ruby-Locale and Ruby on Rails 2.2 sample</h1>
+<h1>Ruby-Locale and Ruby on Rails <%= RAILS_GEM_VERSION %> sample</h1>
 <p><a href ="http://locale.rubyforge.org/svn/trunk/locale_rails/sample">[source code]</a></p>
 
 <h2>The values from Rails</h2>
@@ -9,8 +9,12 @@
   <tr><td>QUERY_STRING</td><td> <%= request.query_string %></td></tr>
   <tr><td>params[:lang]</td><td><%= params[:lang] %></td></tr>
   <tr><td>cookies[:lang]</td><td> <%= cookies[:lang] %></td></tr>
-  <tr><td>I18n.t :hello</td><td> <%= I18n.t :hello %></td></tr>
+  <tr><td>I18n.t :hello (*1)</td><td> <%= I18n.t :hello %></td></tr>
 </table>
+<p>
+(*1) Fallback to "en" if the localized message is not found in the locale.
+Currently, <%= Dir.glob(File.join(RAILS_ROOT, "config/locales/*.yml")).collect {|v| File.basename(v, ".yml")}.inspect %> are supported.
+</p>
 
 <%= render :partial => 'part' %>
 

@@ -10,6 +10,7 @@ auto-detection and some other features includes this library.
 * Action/Fragment caching
 * Separated Localized View template file (Currently, this doesn't work)
 * Localized Routes
+* I18n.t is fallback to localized message candidates.
 
 == Website
 * http://www.yotabanana.com/hiki/ruby-locale-rails.html
