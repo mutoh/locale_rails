@@ -35,7 +35,7 @@ Rake::RDocTask.new { |rdoc|
   rdoc.template = allison if allison.size > 0
 }
 
-desc "Create gem"
+desc "Create gem and tar.gz"
 spec = Gem::Specification.new do |s|
   s.name = PKG_NAME
   s.version = PKG_VERSION
@@ -52,6 +52,12 @@ spec = Gem::Specification.new do |s|
   s.description = <<-EOF
     Ruby-Locale for Ruby on Rails is the pure ruby library which provides basic functions for localization.
   EOF
+end
+
+Rake::PackageTask.new("ruby-locale_rails", PKG_VERSION) do |o|
+  o.package_files = FileList['**/*'].to_a.select{|v| v !~ /pkg|git/}
+  o.need_tar_gz = true
+  o.need_zip = false
 end
 
 Rake::GemPackageTask.new(spec) do |p|
