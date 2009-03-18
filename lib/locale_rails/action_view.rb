@@ -8,36 +8,35 @@
 
   Original: Ruby-GetText-Package-1.92.0
 
-  $Id: action_view.rb 31 2008-12-04 13:32:25Z mutoh $
 =end
 
 require 'action_view'
 
 module ActionView #:nodoc:
-  class Base
-    def _pick_template_with_locale_main(template_path, tags) #:nodoc:
-      path = template_path.sub(/^\//, '')
+   class PathSet < Array
+     include Locale::Util::Memoizable
+
+     def find_template_with_locale_rails(original_template_path, format = nil, html_fallback = true)
+      return original_template_path if original_template_path.respond_to?(:render)
+
+      path = original_template_path.sub(/^\//, '')
       if m = path.match(/(.*)\.(\w+)$/)
         template_file_name, template_file_extension = m[1], m[2]
       else
         template_file_name = path
       end
  
-      tags.each do |v|
+      I18n.candidates.each do |v|
         file_name = "#{template_file_name}_#{v}"
 	begin
-          return _pick_template_without_locale(file_name)
+          return find_template_without_locale_rails(file_name, format, false)
         rescue MissingTemplate => e
 	end
       end
-      _pick_template_without_locale(template_path)
+      find_template_without_locale_rails(original_template_path, format, html_fallback)
     end
-    memoize :_pick_template_with_locale_main
+    alias_method_chain :find_template, :locale_rails
 
-    def _pick_template_with_locale(template_path) #:nodoc: shouldn't memoize.
-      _pick_template_with_locale_main(template_path, I18n.candidates)
-    end
-    alias_method_chain :_pick_template, :locale
   end
 end
 

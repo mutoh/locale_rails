@@ -26,4 +26,8 @@ Currently, <%= Dir.glob(File.join(RAILS_ROOT, "config/locales/*.yml")).collect {
   <li><%= link_to "nl has special _part page(_part_nl.html.erb)", :controller => :samples, :action => :index, :lang => "nl" %></li>
   <li><%= link_to "nl_BE also uses the special _part page(_part_nl.html.erb)", :controller => :samples, :action => :index, :lang => "nl_BE" %></li>
 </ol>
-
+<p>View template by Rails-2.3.x is also supported. </p> 
+<ol>
+  <li><%= link_to "pt has special index page(index.pt.html.erb)", :controller => :samples, :action => :index, :lang => "pt" %></li>
+  <li><%= link_to "pt_BR uses normal index page", :controller => :samples, :action => :index, :lang => "pt_BR" %></li>
+</ol>
