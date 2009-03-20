@@ -14,7 +14,6 @@ require 'action_view'
 
 module ActionView #:nodoc:
    class PathSet < Array
-     include Locale::Util::Memoizable
 
      def find_template_with_locale_rails(original_template_path, format = nil, html_fallback = true)
       return original_template_path if original_template_path.respond_to?(:render)
