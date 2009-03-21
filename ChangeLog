@@ -1,7 +1,13 @@
-2008-12-01  Masao Mutoh  <mutomasa at gmail.com>
+= locale_rails-2.0.0 (2009-03-22)
 
-	* Fix a trivial bug.
+* I18n.translate fallbacks to the localized message in the locale candidates.
+* Support localized view both of gettext-1.93.0 style and rails-2.3.x style.
 
-2008-11-24  Masao Mutoh  <mutomasa at gmail.com>
+= locale_rails-0.1.0 (2008-12-04)
 
-	* Initial import.
+* Initial released.
+* Auto-Detect the locales from the WWW browser
+* Localized Routes
+* Action/Fragment caching
+* Separated Localized View template file
+

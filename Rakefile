@@ -12,7 +12,7 @@ require 'locale_rails/version'
 #task :default => [ :test ]
 
 PKG_NAME = "locale_rails"
-PKG_VERSION = Locale::LOCALE_RAILS_VERSION
+PKG_VERSION = Locale::VERSION
 
 # Run the unit tests
 task :test do 
@@ -44,20 +44,14 @@ spec = Gem::Specification.new do |s|
   s.email = 'mutomasa at gmail.com'
   s.homepage = 'http://locale.rubyforge.org/'
   s.rubyforge_project = "locale"
-  s.files = FileList['**/*'].to_a.select{|v| v !~ /pkg|CVS/}
+  s.files = FileList['**/*'].to_a.select{|v| v !~ /pkg|CVS|git/}
   s.require_path = 'lib'
   s.bindir = 'bin'
-  s.add_dependency('locale', '>= 0.9.0')
+  s.add_dependency('locale', '>= 2.0.0')
   s.has_rdoc = true
   s.description = <<-EOF
     Ruby-Locale for Ruby on Rails is the pure ruby library which provides basic functions for localization.
   EOF
-end
-
-Rake::PackageTask.new("ruby-locale_rails", PKG_VERSION) do |o|
-  o.package_files = FileList['**/*'].to_a.select{|v| v !~ /pkg|git/}
-  o.need_tar_gz = true
-  o.need_zip = false
 end
 
 Rake::GemPackageTask.new(spec) do |p|
@@ -71,8 +65,9 @@ task :release => [ :package ] do
   require 'rubyforge'
 
   rubyforge = RubyForge.new
+  rubyforge.configure
   rubyforge.login
-  rubyforge.add_release("locale", "locale",
-                        "Ruby-Locale for Ruby on Rails #{PKG_VERSION}",
+  rubyforge.add_release("locale", "locale_rails",
+                        PKG_VERSION,
                         "pkg/#{PKG_NAME}-#{PKG_VERSION}.gem")
 end
