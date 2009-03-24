@@ -12,7 +12,7 @@ require 'locale_rails/version'
 #task :default => [ :test ]
 
 PKG_NAME = "locale_rails"
-PKG_VERSION = Locale::VERSION
+PKG_VERSION = LocaleRails::VERSION
 
 # Run the unit tests
 task :test do 
