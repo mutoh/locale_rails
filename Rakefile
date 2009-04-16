@@ -30,7 +30,7 @@ Rake::RDocTask.new { |rdoc|
   rdoc.rdoc_dir = 'doc'
   rdoc.title    = "Ruby-Locale for Ruby on Rails"
   rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README', 'ChangeLog')
+  rdoc.rdoc_files.include('README.rdoc', 'ChangeLog')
   rdoc.rdoc_files.include('lib/**/*.rb')
   rdoc.template = allison if allison.size > 0
 }
