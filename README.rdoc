@@ -29,6 +29,7 @@ auto-detection and some other features includes this library.
 == Support matrix
 * locale_rails-0.1.0 - rails-2.1.x
 * locale_rails-2.0.0 - rails-2.3.2
+* locale_rails-2.0.1 - rails-2.3.2
 
 == License
 This program is licenced under the same licence as Ruby.
