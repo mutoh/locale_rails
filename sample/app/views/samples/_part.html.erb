@@ -3,14 +3,14 @@
 %>
 
 <h2>Get the current locale</h2>
-<h3>I18n.candidates(with no option)</h3>
+<h3>Locale.candidates(with no option)</h3>
 <p>Requested Locales order by the priority. This method is added by Ruby-Locale for Ruby on Rails.</p>
 <div class="result">
-<%=h I18n.candidates.inspect %>
+<%=h Locale.candidates.inspect %>
 </div>
 
 <h3>I18n.locale (with inspect)</h3>
-<p>I18n.locale is set the result(Locale::TagList) of locale_candidates(:type => :rfc).<br/>
+<p>I18n.locale is set the result(Locale::TagList) of Locale.candidates(:type => :rfc).<br/>
 This method is extended by Ruby-Locale for Ruby on Rails and returns all candidates as the Locale::TagList.
 </p>
 <div class="result">

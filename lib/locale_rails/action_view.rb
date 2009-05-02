@@ -25,7 +25,7 @@ module ActionView #:nodoc:
         template_file_name = path
       end
  
-      I18n.candidates.each do |v|
+      Locale.candidates.each do |v|
         file_name = "#{template_file_name}_#{v}"
 	begin
           return find_template_without_locale_rails(file_name, format, false)

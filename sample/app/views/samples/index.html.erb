@@ -13,7 +13,7 @@
 </table>
 <p>
 (*1) Fallback to "en" if the localized message is not found in the locale.
-Currently, <%= Dir.glob(File.join(RAILS_ROOT, "config/locales/*.yml")).collect {|v| File.basename(v, ".yml")}.inspect %> are supported.
+Currently, <%= Dir.glob(File.join(RAILS_ROOT, "config/locales/*.yml")).collect {|v| File.basename(v, ".yml")}.inspect %> are available.
 </p>
 
 <%= render :partial => 'part' %>

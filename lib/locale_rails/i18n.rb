@@ -35,7 +35,13 @@ module I18n
     Locale.clear
     tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
     Locale.current = tag
-    Thread.current[:locale] = candidates(:rfc)[0]
+    Thread.current[:locale] = Locale.candidates(:type => :rfc)[0]
+  end
+
+  def default_locale=(tag)
+    tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
+    Locale.default = tag
+    @@default_locale = tag
   end
   
   class << self
@@ -43,7 +49,7 @@ module I18n
     # MissingTranslationData is overrided to fallback messages in candidate locales.
     def locale_rails_exception_handler(exception, locale, key, options) #:nodoc:
       ret = nil
-      candidates(:rfc).each do |loc|
+      Locale.candidates(:type => :rfc).each do |loc|
         begin
           ret = backend.translate(loc, key, options)
           break
