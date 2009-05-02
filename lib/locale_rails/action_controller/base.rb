@@ -70,7 +70,7 @@ module ActionController #:nodoc:
     # (e.g.)
     #   class ApplicationController < ActionController::Base
     #     def after_init_i18n
-    #       L10nClass.new(locale_candidates)
+    #       L10nClass.new(Locale.candidates)
     #     end
     #     after_init_locale :after_init_i18n
     #     # ...
