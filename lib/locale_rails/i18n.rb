@@ -10,18 +10,23 @@
 =end
 
 module I18n
-  @@supported_locales = nil
   module_function
 
   # Gets the supported locales.
   def supported_locales 
-    @@supported_locales
+    Locale.app_language_tags
+  end
+
+  # Sets the supported locales.
+  #  I18n.set_supported_locales("ja-JP", "ko-KR", ...)
+  def set_supported_locales(*tags)
+    Locale.set_app_language_tags(*tags)
   end
 
   # Sets the supported locales as an Array.
-  #  I18n.supported_locales = ["ja-JP", "ko-KR"]
+  #  I18n.supported_locales = ["ja-JP", "ko-KR", ...]
   def supported_locales=(tags)
-    @@supported_locales = tags
+    Locale.set_app_language_tags(*tags)
   end
 
   # Sets the locale.
@@ -33,26 +38,6 @@ module I18n
     Thread.current[:locale] = candidates(:rfc)[0]
   end
   
-  # Get the locale candidates as a Locale::TagList.
-  # This is the utility function which calls Locale.candidates with
-  # supported_language_tags.
-  #
-  # I18n.locale is also overrided by Ruby-Locale and it returns 
-  # the result of this method with :rfc option.
-  # 
-  # +type+ :simple, :common(default), :rfc, :cldr.
-  # 
-  # This is used by Rails application, but it may be better not to
-  # use this method in Rails plugins/libraries, because they have their
-  # own supported languages. 
-  def candidates(type = :common)
-    default = [I18n.default_locale.to_s]
-    default = ["en-US", "en"] if default[0] == "en-US"
-    Locale.candidates(:type => type, 
-                      :supported_language_tags => supported_locales,
-                      :default_language_tags => default)
-  end
-
   class << self
 
     # MissingTranslationData is overrided to fallback messages in candidate locales.
