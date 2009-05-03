@@ -27,7 +27,7 @@ auto-detection and some other features includes this library.
    # gem install locale_rails
 
 == Usage
-config/environment.rb
+==== config/environment.rb
   Rails::Initializer.run do |config|
     :
     :
@@ -35,7 +35,7 @@ config/environment.rb
     config.gem 'locale_rails'
   end
 
-in config/initializer/locale.rb
+==== config/initializer/locale.rb
 
  # Tell the I18n library where to find your translations
  I18n.supported_locales = ["ja", "en"]
