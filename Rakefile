@@ -32,7 +32,7 @@ Rake::RDocTask.new { |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README.rdoc', 'ChangeLog')
   rdoc.rdoc_files.include('lib/**/*.rb')
-#  rdoc.template = allison if allison.size > 0
+  rdoc.template = allison if allison.size > 0
 }
 
 desc "Create gem and tar.gz"
