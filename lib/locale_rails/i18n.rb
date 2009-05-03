@@ -38,6 +38,8 @@ module I18n
     Thread.current[:locale] = Locale.candidates(:type => :rfc)[0]
   end
 
+  # Sets the default locale.
+  #  I18n.default_locale = "ja"
   def default_locale=(tag)
     tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
     Locale.default = tag
