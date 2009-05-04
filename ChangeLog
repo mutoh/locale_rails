@@ -1,3 +1,8 @@
+= locale_rails-2.0.2 (2009-05-04)
+ * Remove I18n.candidates. Use Locale.candidates directly.
+ * Improve documentations.
+ * Override I18n.default_locale= to call Locale.default.
+
 = locale_rails-2.0.1 (2009-04-17)
  * Fixed to work localized view which was canceled.
 
