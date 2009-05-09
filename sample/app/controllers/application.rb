@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   # Set the charset of Content-Type.
   # This is not Ruby-Locale method but useful.
 #  self.default_charset = "iso8859-1"
-   #I18n.supported_locales = ["en", "ja", "fr"]
+  # I18n.supported_locales = ["en", "ja", "fr"]
 
 =begin
   def before_init_i18n

@@ -18,7 +18,7 @@ module ActionController #:nodoc:
       def fragment_cache_key_with_locale(name) 
         ret = fragment_cache_key_without_locale(name)
         if ret.is_a? String
-          ret.gsub(/:/, ".") << "_#{I18n.candidates}"
+          ret.gsub(/:/, ".") << "_#{I18n.locale}"
         else
           ret
         end
