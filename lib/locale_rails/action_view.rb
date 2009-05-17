@@ -14,6 +14,13 @@ require 'action_view'
 
 module ActionView #:nodoc:
    class PathSet < Array
+     def _find_template_internal(file_name, format, html_fallback = false)
+       begin
+         return find_template_without_locale_rails(file_name, format, html_fallback)
+       rescue MissingTemplate => e
+       end
+       nil
+     end
 
      def find_template_with_locale_rails(original_template_path, format = nil, html_fallback = true)
       return original_template_path if original_template_path.respond_to?(:render)
@@ -25,12 +32,16 @@ module ActionView #:nodoc:
         template_file_name = path
       end
  
+      default = Locale.default.to_common
       Locale.candidates.each do |v|
         file_name = "#{template_file_name}_#{v}"
-	begin
-          return find_template_without_locale_rails(file_name, format, false)
-        rescue MissingTemplate => e
-	end
+        ret = _find_template_internal(file_name, format)
+        return ret if ret
+        if v == default
+          # When the user locale is the default locale, find no locale file such as index.html.erb.
+          ret = _find_template_internal(template_file_name, format)
+        end
+        return ret if ret
       end
       find_template_without_locale_rails(original_template_path, format, html_fallback)
     end
