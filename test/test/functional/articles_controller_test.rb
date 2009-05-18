@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'fileutils'
 
 class ArticlesControllerTest < ActionController::TestCase
 
@@ -99,6 +100,35 @@ class ArticlesControllerTest < ActionController::TestCase
     get :index
     assert_equal "index.html.erb", @response.body.chop
     Locale.default = nil
+  end
+
+  test "list.html.erb should be cached" do
+    cache_path = RAILS_ROOT + "/tmp/cache/views"
+    FileUtils.rm_rf cache_path
+    @request.env["HTTP_ACCEPT_LANGUAGE"] = "en,ja;q=0.7,de;q=0.3"
+    get :list
+    assert_equal "list:en", @response.body.chop
+
+    path = Dir.glob(cache_path + "/**/list_en.cache")[0]
+    st = File.stat(path)
+    last_modified_en = [st.ctime, st.mtime]
+
+    get :list, :lang => "ja"
+    assert_equal "list:ja", @response.body.chop
+
+    path = Dir.glob(cache_path + "/**/list_ja.cache")[0]
+    st = File.stat(path)
+    last_modified_ja = [st.ctime, st.mtime]
+
+    get :list
+    st = File.stat(path)
+    assert_equal last_modified_en, [st.ctime, st.mtime]
+    assert_equal "list:en", @response.body.chop
+
+    get :list, :lang => "ja"
+    st = File.stat(path)
+    assert_equal last_modified_ja, [st.ctime, st.mtime]
+    assert_equal "list:ja", @response.body.chop
   end
 
 end
