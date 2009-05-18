@@ -16,9 +16,9 @@ PKG_VERSION = LocaleRails::VERSION
 
 # Run the unit tests
 task :test do 
-  Dir.glob("test/test_*.rb").each do |v|
-    ruby "-Ilib #{v}"
-  end
+  cd "test"
+  sh "rake test"
+  cd ".."
 end
 
 Rake::RDocTask.new { |rdoc|
