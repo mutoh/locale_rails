@@ -47,7 +47,7 @@ spec = Gem::Specification.new do |s|
   s.files = FileList['**/*'].to_a.select{|v| v !~ /pkg|CVS|git/}
   s.require_path = 'lib'
   s.bindir = 'bin'
-  s.add_dependency('locale', '>= 2.0.3')
+  s.add_dependency('locale', '>= 2.0.4')
   s.has_rdoc = true
   s.description = <<-EOF
     Ruby-Locale for Ruby on Rails is the pure ruby library which provides basic functions for localization.
