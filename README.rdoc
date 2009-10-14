@@ -48,8 +48,8 @@ auto-detection and some other features includes this library.
 * locale_rails-0.1.0 - rails-2.1.x
 
 == License
-This program is licenced under the same licence as Ruby.
-(See the file 'COPYING'.)
+This program is licenced under the same licence as Ruby(See COPYING) or
+LGPL(Lesser General Public License: http://www.gnu.org/licenses/lgpl-3.0.txt).
 
 == Maintainer
 Masao Mutoh <mutomasa at gmail.com>
