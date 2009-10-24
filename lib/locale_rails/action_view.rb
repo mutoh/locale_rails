@@ -1,10 +1,10 @@
 =begin
   locale_rails/lib/action_view.rb - Ruby/Locale for "Ruby on Rails"
 
-  Copyright (C) 2008  Masao Mutoh
+  Copyright (C) 2008-2009  Masao Mutoh
 
   You may redistribute it and/or modify it under the same
-  license terms as Ruby.
+  license terms as Ruby or LGPL.
 
   Original: Ruby-GetText-Package-1.92.0
 

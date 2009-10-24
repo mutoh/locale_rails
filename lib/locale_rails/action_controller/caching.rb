@@ -1,12 +1,10 @@
 =begin
   lib/locale_rails/action_controller.rb - Ruby/Locale for "Ruby on Rails"
 
-  Copyright (C) 2008  Masao Mutoh
+  Copyright (C) 2008-2009  Masao Mutoh
 
   You may redistribute it and/or modify it under the same
-  license terms as Ruby.
-
-  $Id: action_controller.rb 25 2008-11-30 15:44:24Z mutoh $
+  license terms as Ruby or LGPL.
 =end
 
 require 'action_controller/caching'

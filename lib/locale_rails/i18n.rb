@@ -4,9 +4,8 @@
   Copyright (C) 2008,2009  Masao Mutoh
 
   You may redistribute it and/or modify it under the same
-  license terms as Ruby.
+  license terms as Ruby or LGPL.
 
-  $Id: i18n.rb 25 2008-11-30 15:44:24Z mutoh $
 =end
 
 module I18n
