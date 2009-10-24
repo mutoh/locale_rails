@@ -15,9 +15,13 @@ module ActionController #:nodoc:
 
   module Caching
     module Fragments
+      @@fragmented_locales = []
       def fragment_cache_key_with_locale(name) 
         ret = fragment_cache_key_without_locale(name)
         if ret.is_a? String
+          unless @@fragmented_locales.include? I18n.locale
+            @@fragmented_locales << I18n.locale
+          end
           ret.gsub(/:/, ".") << "_#{I18n.locale}"
         else
           ret
@@ -36,8 +40,8 @@ module ActionController #:nodoc:
           end
         else
           key = key.gsub(/:/, ".")
-          self.class.benchmark "Expired fragment: #{key}, lang = #{I18n.supported_locales}" do
-            supported_locales.each do |lang|
+          self.class.benchmark "Expired fragment: #{key}, lang = #{@@fragmented_locales}" do
+            @@fragmented_locales.each do |lang|
               fc_store.delete("#{key}_#{lang}", options)
             end
           end

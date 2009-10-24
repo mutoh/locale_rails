@@ -13,7 +13,6 @@ require 'action_controller'
 
 module ActionController #:nodoc:
   class Base
-    
     prepend_before_filter :init_locale
 
     def self.locale_filter_chain # :nodoc:

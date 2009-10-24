@@ -5,4 +5,9 @@ class ArticlesController < ApplicationController
 
   def list
   end
+
+  def expire_cache
+    expire_action(:action => "list")
+    render :text => "OK"
+  end
 end

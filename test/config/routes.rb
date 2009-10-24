@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :articles
-  map.root :controller => :articles
+  map.root :controller => :articles, :collection => {:expire_cache => :get}
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

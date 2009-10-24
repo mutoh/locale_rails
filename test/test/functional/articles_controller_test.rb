@@ -129,6 +129,11 @@ class ArticlesControllerTest < ActionController::TestCase
     st = File.stat(path)
     assert_equal last_modified_ja, [st.ctime, st.mtime]
     assert_equal "list:ja", @response.body.chop
+
+    # expire test
+    assert_equal 2, Dir.glob(cache_path + "/**/*.cache").size
+    get :expire_cache, :lang => "ja"
+    assert_equal [], Dir.glob(cache_path + "/**/*.cache")
   end
 
 end
