@@ -74,7 +74,6 @@ class ArticlesControllerTest < ActionController::TestCase
     @request.env["HTTP_ACCEPT_LANGUAGE"] = "zh"
     get :index
     assert_equal "index_de.html.erb", @response.body.chop
-    Locale.default = nil
   end
 
   test "localized template with accept_languages and default is zh" do
@@ -99,7 +98,6 @@ class ArticlesControllerTest < ActionController::TestCase
     @request.env["HTTP_ACCEPT_LANGUAGE"] = "zh"
     get :index
     assert_equal "index.html.erb", @response.body.chop
-    Locale.default = nil
   end
 
   test "list.html.erb should be cached" do
@@ -136,5 +134,22 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_equal [], Dir.glob(cache_path + "/**/*.cache")
   end
 
+  test "is robust against malformed parameters" do
+    # default to "de" when parsing does not work
+    Locale.default = "de"
+
+    assert_nothing_raised do
+      Locale.default = "de"
+      get :index, :lang => ["en"]
+      assert_equal "index_de.html.erb", @response.body.chop
+
+      get :index, :lang => []
+      assert_equal "index_de.html.erb", @response.body.chop
+    end
+  end
+
+  teardown do
+    Locale.default = nil
+  end
 end
 

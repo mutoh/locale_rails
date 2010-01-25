@@ -35,7 +35,7 @@ module ActionController #:nodoc:
       fchain = self.class.locale_filter_chain
       run_before_filters(fchain.select(&:before?), 0, 0)
 
-      cgi.params["lang"] = [params["lang"]] if params["lang"]
+      cgi.params["lang"] = [params["lang"]] if params["lang"].is_a?(String)
       Locale.set_cgi(cgi)
       if cgi.params["lang"]
         I18n.locale = cgi.params["lang"][0]
