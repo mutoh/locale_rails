@@ -42,6 +42,7 @@ auto-detection and some other features includes this library.
  I18n.default_locale = "ja" 
 
 == Support matrix
+* locale_rails-2.0.6 - rails-2.3.2,2.3.3,2.3.4,2.3.5
 * locale_rails-2.0.5 - rails-2.3.2,2.3.3,2.3.4
 * locale_rails-2.0.4 - rails-2.3.2
 * locale_rails-2.0.3 - rails-2.3.2
