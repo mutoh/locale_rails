@@ -51,6 +51,9 @@ auto-detection and some other features includes this library.
 * locale_rails-2.0.0 - rails-2.3.2
 * locale_rails-0.1.0 - rails-2.1.x
 
+== Tested Ruby version:
+* locale_rails-2.0.6 - 1.8.7-p249, 1.9.1-p378
+
 == License
 This program is licenced under the same licence as Ruby(See COPYING) or
 LGPL(Lesser General Public License: http://www.gnu.org/licenses/lgpl-3.0.txt).
