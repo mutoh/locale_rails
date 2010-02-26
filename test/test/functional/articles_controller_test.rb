@@ -111,23 +111,24 @@ class ArticlesControllerTest < ActionController::TestCase
 
     path = Dir.glob(cache_path + "/**/list_en.cache")[0]
     st = File.stat(path)
-    last_modified_en = [st.ctime, st.mtime]
+    last_modified_en = [st.ctime.to_s, st.mtime.to_s]
 
     get :list, :lang => "ja"
     assert_equal "list:ja", @response.body.chop
 
     path = Dir.glob(cache_path + "/**/list_ja.cache")[0]
     st = File.stat(path)
-    last_modified_ja = [st.ctime, st.mtime]
+    last_modified_ja = [st.ctime.to_s, st.mtime.to_s]
 
     get :list
     st = File.stat(path)
-    assert_equal last_modified_en, [st.ctime, st.mtime]
+
+    assert_equal last_modified_en, [st.ctime.to_s, st.mtime.to_s]
     assert_equal "list:en", @response.body.chop
 
     get :list, :lang => "ja"
     st = File.stat(path)
-    assert_equal last_modified_ja, [st.ctime, st.mtime]
+    assert_equal last_modified_ja, [st.ctime.to_s, st.mtime.to_s]
     assert_equal "list:ja", @response.body.chop
 
     # expire test
