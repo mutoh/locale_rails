@@ -13,35 +13,35 @@ module I18n
 
   # Gets the supported locales.
   def supported_locales 
-    Locale.app_language_tags
+    ::Locale.app_language_tags
   end
 
   # Sets the supported locales.
   #  I18n.set_supported_locales("ja-JP", "ko-KR", ...)
   def set_supported_locales(*tags)
-    Locale.set_app_language_tags(*tags)
+    ::Locale.set_app_language_tags(*tags)
   end
 
   # Sets the supported locales as an Array.
   #  I18n.supported_locales = ["ja-JP", "ko-KR", ...]
   def supported_locales=(tags)
-    Locale.set_app_language_tags(*tags)
+    ::Locale.set_app_language_tags(*tags)
   end
 
-  # Sets the locale.
+  # Sets the ::Locale.
   #  I18n.locale = "ja-JP"
   def locale=(tag)
-    Locale.clear
+    ::Locale.clear
     tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
-    Locale.current = tag
-    Thread.current[:locale] = Locale.candidates(:type => :rfc)[0]
+    ::Locale.current = tag
+    Thread.current[:locale] = ::Locale.candidates(:type => :rfc)[0]
   end
 
-  # Sets the default locale.
+  # Sets the default ::Locale.
   #  I18n.default_locale = "ja"
   def default_locale=(tag)
     tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
-    Locale.default = tag
+    ::Locale.default = tag
     @@default_locale = tag
   end
   
@@ -50,7 +50,7 @@ module I18n
     # MissingTranslationData is overrided to fallback messages in candidate locales.
     def locale_rails_exception_handler(exception, locale, key, options) #:nodoc:
       ret = nil
-      Locale.candidates(:type => :rfc).each do |loc|
+      ::Locale.candidates(:type => :rfc).each do |loc|
         begin
           ret = backend.translate(loc, key, options)
           break
