@@ -32,7 +32,7 @@ module I18n
   #  I18n.locale = "ja-JP"
   def locale=(tag)
     ::Locale.clear
-    tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
+    tag = ::Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
     ::Locale.current = tag
     Thread.current[:locale] = ::Locale.candidates(:type => :rfc)[0]
   end
@@ -40,7 +40,7 @@ module I18n
   # Sets the default ::Locale.
   #  I18n.default_locale = "ja"
   def default_locale=(tag)
-    tag = Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
+    tag = ::Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
     ::Locale.default = tag
     @@default_locale = tag
   end
