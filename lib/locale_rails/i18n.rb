@@ -30,11 +30,11 @@ module I18n
 
   # Sets the ::Locale.
   #  I18n.locale = "ja-JP"
-  def locale=(tag)
+  def locale_with_locale_rails=(tag)
     ::Locale.clear
     tag = ::Locale::Tag::Rfc.parse(tag.to_s) if tag.kind_of? Symbol
     ::Locale.current = tag
-    Thread.current[:locale] = ::Locale.candidates(:type => :rfc)[0]
+    self.locale_without_locale_rails = ::Locale.candidates(:type => :rfc)[0].to_s
   end
 
   # Sets the default ::Locale.
@@ -46,6 +46,7 @@ module I18n
   end
   
   class << self
+    alias_method_chain :locale=, :locale_rails
 
     # MissingTranslationData is overrided to fallback messages in candidate locales.
     def locale_rails_exception_handler(exception, locale, key, options) #:nodoc:
@@ -64,4 +65,3 @@ module I18n
   end
 
 end
-
