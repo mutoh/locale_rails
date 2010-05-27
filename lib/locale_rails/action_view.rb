@@ -35,11 +35,12 @@ module ActionView #:nodoc:
       default = Locale.default.to_common
       Locale.candidates.each do |v|
         file_name = "#{template_file_name}_#{v}"
+        file_name += ".#{template_file_extension}" if template_file_extension
         ret = _find_template_internal(file_name, format)
         return ret if ret
         if v == default
           # When the user locale is the default locale, find no locale file such as index.html.erb.
-          ret = _find_template_internal(template_file_name, format)
+          ret = _find_template_internal(path, format)
         end
         return ret if ret
       end

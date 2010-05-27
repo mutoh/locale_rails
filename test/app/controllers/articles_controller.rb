@@ -10,4 +10,8 @@ class ArticlesController < ApplicationController
     expire_action(:action => "list")
     render :text => "OK"
   end
+
+  def show
+    render :action => 'show.html'
+  end
 end

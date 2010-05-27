@@ -149,6 +149,11 @@ class ArticlesControllerTest < ActionController::TestCase
     end
   end
 
+  test "find template with specific format" do
+    xhr :get, :show
+    assert_template 'show.html'
+  end
+
   teardown do
     Locale.default = nil
   end
