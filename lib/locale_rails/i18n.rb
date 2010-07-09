@@ -56,7 +56,7 @@ module I18n
           ret = backend.translate(loc, key, options)
           break
         rescue I18n::MissingTranslationData 
-          ret = I18n.default_exception_handler(exception, locale, key, options)
+          ret = I18n.__send__(:default_exception_handler, exception, locale, key, options)
         end
       end
       ret
